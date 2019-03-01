@@ -129,7 +129,7 @@ services:
       CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
     volumes:
-      - ./jars:/usr/share/java/kafka-connect-jdbc-mysql
+      - ./kafka-connectors:/usr/share/java/kafka-connect-jdbc-mysql
       - ~/.aws/credentials:/root/.aws/credentials
 
   ksql-server:
@@ -238,8 +238,8 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
     volumes:
-      - ./mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
-      - ./mysql/inventory.sql:/docker-entrypoint-initdb.d/inventory.sql
+      - ./conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./scripts/inventory.sql:/docker-entrypoint-initdb.d/inventory.sql
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.5.3
